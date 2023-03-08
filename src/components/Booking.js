@@ -1,29 +1,16 @@
-import { Button, TextField, Checkbox, FormControlLabel, Grid } from "@mui/material";
+import { Button, TextField, Checkbox, FormControl, FormControlLabel, Grid, InputLabel } from "@mui/material";
 import { useState } from "react";
-import { makeStyles } from '@mui/styles';
+
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
-
+import MenuItem from '@mui/material/MenuList';
+import Select from '@mui/material/Select';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
-
-
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-      width: '25ch',
-    },
-  },
-  button: {
-    marginTop: theme.spacing(2),
-  },
-}));
 
 const theme = createTheme();
 
@@ -38,7 +25,12 @@ function BookingForm() {
   const [selectedDay, setSelectedDay] = useState("");
   const [selectedSlot, setSelectedSlot] = useState("");
 
+  
 
+
+  
+  
+  
 
   const handleBookingSubmit = () => {
     const bookingInfo = {
@@ -52,6 +44,7 @@ function BookingForm() {
     };
     localStorage.setItem("bookingInfo", JSON.stringify(bookingInfo));
     // TODO: handle successful booking submission
+
   };
 
   return (
@@ -60,6 +53,7 @@ function BookingForm() {
         <CssBaseline />
         <Box
           sx={{
+            
             marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
@@ -78,7 +72,7 @@ function BookingForm() {
           <Typography component="h1" variant="h5">
             Booking
           </Typography>
-          <Box component="form" noValidate onSubmit={handleBookingSubmit} sx={{ mt: 3 }}>
+          <Box component="form" noValidate onSubmit={handleBookingSubmit} sx={{ m: 1, minWidth: 120, }}>
             <Grid container spacing={3}>
               <Grid item xs={15} sm={6}>
                 <TextField
@@ -100,21 +94,60 @@ function BookingForm() {
                   required
                 />
               </Grid>
-              
 
-              <Grid item xs={12} sm={6}>
+
+              <Grid item xs={12} sm={8}>
 
                 <TextField
                   id="email"
                   label="Email"
                   type="email"
+                  rows={4}
                   variant="outlined"
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
                   required
                 />
               </Grid>
-              
+
+              <Grid  item xs={12} sm={8}>
+              <FormControl fullWidth>
+
+              <InputLabel >Day</InputLabel>
+                <Select
+                  id="Day"
+                  value={selectedDay}
+                  variant="outlined"
+                  label="Day"
+                  onChange={(event) => setSelectedDay(event.target.value)}
+                  required
+                >
+                  <MenuItem value="">
+                     <em>None</em>
+                  </MenuItem>
+                  <MenuItem value={10}>Sunday</MenuItem>
+                  <MenuItem value={20}>Monday</MenuItem>
+                  <MenuItem value={30}>Tuesday</MenuItem>
+                  <MenuItem value={30}>Wednesday</MenuItem>
+                  <MenuItem value={30}>Thursday</MenuItem>
+                  <MenuItem value={30}>Friday</MenuItem>
+                </Select>
+                </FormControl>
+              </Grid>
+
+              <Grid item xs={12} sm={6}>
+
+                <TextField
+                  id="Time"
+                  label="Time"
+
+                  variant="outlined"
+                  value={selectedSlot}
+                  onChange={(event) => setSelectedSlot(event.target.value)}
+                  required
+                />
+              </Grid>
+
 
               <Grid item xs={12} sm={8}>
 
@@ -129,14 +162,14 @@ function BookingForm() {
                   required
                 />
               </Grid>
-              
-                <Grid item xs={12} sm={6}>
-                  <FormControlLabel control={<Checkbox />} label="Lab 1" />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <FormControlLabel control={<Checkbox />} label="Lab 2" />
-                </Grid>
-              
+
+              <Grid item xs={12} sm={6}>
+                <FormControlLabel control={<Checkbox />} label="Lab 1" onChange={(event) => setSelectedLab(event.target.value)} />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <FormControlLabel control={<Checkbox />} label="Lab 2" onChange={(event) => setSelectedLab(event.target.value)} />
+              </Grid>
+
             </Grid>
 
 
@@ -155,6 +188,9 @@ function BookingForm() {
     </ThemeProvider>
 
   );
+
+  
+
 
 
 }

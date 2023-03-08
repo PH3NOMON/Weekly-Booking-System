@@ -1,8 +1,9 @@
-import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import bookingInfo from './Booking'
 
-const bookingInfo = JSON.parse(localStorage.getItem("bookingInfo"));
-if (bookingInfo) {
-  console.log(bookingInfo.lab);
-  console.log(bookingInfo.day);
-  console.log(bookingInfo.slot);
+const Bookinginfo = JSON.parse(localStorage.getItem(bookingInfo));
+if (Bookinginfo) {
+  console.log(Bookinginfo.lab);
+  console.log(Bookinginfo.day);
+  console.log(Bookinginfo.slot);
 }
+
