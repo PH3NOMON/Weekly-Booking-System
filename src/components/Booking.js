@@ -1,43 +1,170 @@
-import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
-import useState from 'react'
+import { Button, TextField, Checkbox, FormControlLabel, Grid } from "@mui/material";
+import { useState } from "react";
+import { makeStyles } from '@mui/styles';
+import Avatar from '@mui/material/Avatar';
+import Typography from '@mui/material/Typography';
+import * as React from 'react';
+
+import Box from '@mui/material/Box';
+import CssBaseline from '@mui/material/CssBaseline';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Container from '@mui/material/Container';
+import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
 
 
-  function BookingForm() {
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
+  },
+  button: {
+    marginTop: theme.spacing(2),
+  },
+}));
+
+const theme = createTheme();
+
+function BookingForm() {
+
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [description, setDescription] = useState("");
   const [selectedLab, setSelectedLab] = useState("");
   const [selectedDay, setSelectedDay] = useState("");
   const [selectedSlot, setSelectedSlot] = useState("");
 
-  const handleLabChange = (event) => {
-    setSelectedLab(event.target.value);
-  };
 
-  const handleDayChange = (event) => {
-    setSelectedDay(event.target.value);
-    
+
   const handleBookingSubmit = () => {
     const bookingInfo = {
+      names: firstName + lastName,
+      emails: email,
+      descp: description,
       lab: selectedLab,
       day: selectedDay,
-      slot: selectedSlot,
+      time: selectedSlot,
+
     };
     localStorage.setItem("bookingInfo", JSON.stringify(bookingInfo));
     // TODO: handle successful booking submission
   };
 
   return (
-    <form onSubmit={handleBookingSubmit}>
-      {/* ... */}
-      <Button type="submit" variant="contained" color="primary">
-        Book Now
-      </Button>
-    </form>
+    <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            border: '3px solid',
+            borderColor: 'primary.main',
+            borderRadius: '12px',
+            boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
+            overflow: 'hidden',
+            padding: '16px'
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <BookmarkOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Booking
+          </Typography>
+          <Box component="form" noValidate onSubmit={handleBookingSubmit} sx={{ mt: 3 }}>
+            <Grid container spacing={3}>
+              <Grid item xs={15} sm={6}>
+                <TextField
+                  id="first-name"
+                  label="First Name"
+                  variant="outlined"
+                  value={firstName}
+                  onChange={(event) => setFirstName(event.target.value)}
+                  required
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  id="last-name"
+                  label="Last Name"
+                  variant="outlined"
+                  value={lastName}
+                  onChange={(event) => setLastName(event.target.value)}
+                  required
+                />
+              </Grid>
+              
+
+              <Grid item xs={12} sm={6}>
+
+                <TextField
+                  id="email"
+                  label="Email"
+                  type="email"
+                  variant="outlined"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                  required
+                />
+              </Grid>
+              
+
+              <Grid item xs={12} sm={8}>
+
+                <TextField
+                  id="description"
+                  label="Description"
+                  multiline
+                  rows={4}
+                  variant="outlined"
+                  value={description}
+                  onChange={(event) => setDescription(event.target.value)}
+                  required
+                />
+              </Grid>
+              
+                <Grid item xs={12} sm={6}>
+                  <FormControlLabel control={<Checkbox />} label="Lab 1" />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <FormControlLabel control={<Checkbox />} label="Lab 2" />
+                </Grid>
+              
+            </Grid>
+
+
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Book now
+            </Button>
+          </Box>
+        </Box>
+
+      </Container>
+    </ThemeProvider>
+
   );
-   }
-  }
+
+
+}
+
+
+
 
 
 export default BookingForm;
 
 
-//Define the BookingForm component that will allow users to book a session for a selected lab and time slot. The BookingForm will display a drop-down list of available labs, 
+//Define the BookingForm component that will allow users to book a session for a selected lab and time slot. The BookingForm will display a drop-down list of available labs,
     //a date picker to select a day of the week, and a time slot picker to select a 1.5 hour time slot from the available slots for the selected lab and day.
