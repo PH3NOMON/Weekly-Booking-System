@@ -1,11 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Labs from './App';
+import Labs from './components/Labs';
+
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Labs />
+   <Labs />
+   
+   
   </React.StrictMode>
 );
 
