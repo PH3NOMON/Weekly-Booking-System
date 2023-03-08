@@ -11,6 +11,40 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
+import PropTypes from 'prop-types';
+import { withStyles } from '@mui/styles';
+
+const styles = {
+  root: {
+    background: (props) =>
+      props.color === 'red'
+        ? 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'
+        : 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+    border: 0,
+    borderRadius: 3,
+    boxShadow: (props) =>
+      props.color === 'red'
+        ? '0 3px 5px 2px rgba(255, 105, 135, .3)'
+        : '0 3px 5px 2px rgba(33, 203, 243, .3)',
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+    margin: 8,
+  },
+};
+
+function MyButtonRaw(props) {
+  const { classes, color, ...other } = props;
+  return <Button className={classes.root} {...other} />;
+}
+
+MyButtonRaw.propTypes = {
+  classes: PropTypes.object.isRequired,
+  color: PropTypes.oneOf(['blue', 'red']).isRequired,
+};
+
+const MyButton = withStyles(styles)(MyButtonRaw);
+
 
 const theme = createTheme();
 
@@ -25,12 +59,12 @@ function BookingForm() {
   const [selectedDay, setSelectedDay] = useState("");
   const [selectedSlot, setSelectedSlot] = useState("");
 
-  
 
 
-  
-  
-  
+
+
+
+
 
   const handleBookingSubmit = () => {
     const bookingInfo = {
@@ -53,7 +87,7 @@ function BookingForm() {
         <CssBaseline />
         <Box
           sx={{
-            
+
             marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
@@ -110,28 +144,28 @@ function BookingForm() {
                 />
               </Grid>
 
-              <Grid  item xs={12} sm={8}>
-              <FormControl fullWidth>
+              <Grid item xs={12} sm={8}>
+                <FormControl fullWidth>
 
-              <InputLabel >Day</InputLabel>
-                <Select
-                  id="Day"
-                  value={selectedDay}
-                  variant="outlined"
-                  label="Day"
-                  onChange={(event) => setSelectedDay(event.target.value)}
-                  required
-                >
-                  <MenuItem value="">
-                     <em>None</em>
-                  </MenuItem>
-                  <MenuItem value={10}>Sunday</MenuItem>
-                  <MenuItem value={20}>Monday</MenuItem>
-                  <MenuItem value={30}>Tuesday</MenuItem>
-                  <MenuItem value={30}>Wednesday</MenuItem>
-                  <MenuItem value={30}>Thursday</MenuItem>
-                  <MenuItem value={30}>Friday</MenuItem>
-                </Select>
+                  <InputLabel >Day</InputLabel>
+                  <Select
+                    id="Day"
+                    value={selectedDay}
+                    variant="outlined"
+                    label="Day"
+                    onChange={(event) => setSelectedDay(event.target.value)}
+                    required
+                  >
+                    <MenuItem value="">
+                      <em>None</em>
+                    </MenuItem>
+                    <MenuItem value={10}>Sunday</MenuItem>
+                    <MenuItem value={20}>Monday</MenuItem>
+                    <MenuItem value={30}>Tuesday</MenuItem>
+                    <MenuItem value={30}>Wednesday</MenuItem>
+                    <MenuItem value={30}>Thursday</MenuItem>
+                    <MenuItem value={30}>Friday</MenuItem>
+                  </Select>
                 </FormControl>
               </Grid>
 
@@ -173,14 +207,9 @@ function BookingForm() {
             </Grid>
 
 
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Book now
-            </Button>
+            <React.Fragment>
+              <MyButton type="submit"  color="blue">Book now</MyButton>
+            </React.Fragment>
           </Box>
         </Box>
 
@@ -189,7 +218,7 @@ function BookingForm() {
 
   );
 
-  
+
 
 
 
