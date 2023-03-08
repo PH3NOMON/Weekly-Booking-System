@@ -34,5 +34,5 @@ Credits
 
 The Labs Booking System was created by Simon Shrestha.
 
-![image](https://user-images.githubusercontent.com/120302946/223735426-97184461-3fb4-4017-bfd8-2b7a9dd9b600.png)
+![image](https://user-images.githubusercontent.com/120302946/223747129-222a85b1-9f75-4703-9c3f-eb560116c7cb.png)
 
