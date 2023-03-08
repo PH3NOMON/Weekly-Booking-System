@@ -1,4 +1,4 @@
-Labs Booking System ![image](https://www.nicepng.com/png/detail/188-1886566_personal-computer-computer-emoji-png.png)
+Labs Booking System 
 
 The Labs Booking System is a web application that allows users to book time slots in Lab 1 and Lab 2 for a duration of 1.5 hours. The application is built with React and Material UI, and it stores the booking information in the browser's local storage.
 
