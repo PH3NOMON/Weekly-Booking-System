@@ -33,3 +33,6 @@ If you want to contribute to the Labs Booking System, feel free to fork the repo
 Credits
 
 The Labs Booking System was created by Simon Shrestha.
+
+![image](https://user-images.githubusercontent.com/120302946/223735426-97184461-3fb4-4017-bfd8-2b7a9dd9b600.png)
+
