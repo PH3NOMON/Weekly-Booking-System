@@ -106,11 +106,7 @@ const labsAvailability = [
           ))}
         </TableBody>
       </Table>
-      <style jsx>{`
-        .selected {
-          background-color: yellow;
-        }
-      `}</style>
+      
     </TableContainer>
   );
 }
